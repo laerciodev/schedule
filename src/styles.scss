@@ -1,5 +1,7 @@
+@import "./assets//css//font.scss";
 @import "./assets/css/color.scss";
 
 body {
   background: $base-color;
+  font-family: $font;
 }
