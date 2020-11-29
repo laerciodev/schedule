@@ -1,6 +1,8 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-add-contact',
   templateUrl: './add-contact.component.html',
@@ -10,11 +12,28 @@ export class AddContactComponent implements OnInit {
   @Input() showModal: boolean;
   @Output() closeModal = new EventEmitter<boolean>();
 
-  constructor() {}
+  form: FormGroup;
 
-  ngOnInit(): void {}
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.initForm();
+  }
+
+  initForm() {
+    this.form = this.fb.group({
+      name: [''],
+      email: [''],
+      tel: [''],
+    });
+    console.log(this.form);
+    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe(() => {
+      console.log(this.form);
+    });
+  }
 
   close() {
     this.closeModal.emit(false);
+    this.form.reset();
   }
 }
