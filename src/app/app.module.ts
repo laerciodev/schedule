@@ -9,6 +9,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 
 /* components */
 import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     HomeModule,
     AngularSvgIconModule.forRoot(),
+    StoreModule.forRoot({}, {}),
   ],
   providers: [],
   bootstrap: [AppComponent],
