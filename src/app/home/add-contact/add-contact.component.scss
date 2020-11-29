@@ -26,3 +26,55 @@
   padding-bottom: 0.781rem;
   border-bottom: 1px solid $cloudy-blue;
 }
+
+.form {
+  padding: 1.219rem 1.5rem 1.375rem 1.5rem;
+  border-bottom: 1px solid $cloudy-blue;
+}
+
+.form-container {
+  color: $dark;
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+
+  &.email {
+    margin-top: 1rem;
+  }
+
+  &.tel {
+    margin-top: 0.875rem;
+  }
+}
+
+.input {
+  border-radius: 4px;
+  border: 1px solid $cloudy-blue;
+  padding: 0.563rem 0 0.438rem 0.625rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: $dark;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.label {
+  margin-bottom: 0.25rem;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.938rem;
+  margin-right: 1rem;
+}
+
+.save {
+  background-color: $salmon;
+  color: $white-two;
+  padding: 0.5rem 1rem;
+  border-radius: 16px;
+  margin-left: 1rem;
+}

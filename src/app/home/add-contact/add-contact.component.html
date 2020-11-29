@@ -1,5 +1,23 @@
-<div class="modal-background">
+<div *ngIf="showModal" class="modal-background">
   <div class="modal">
     <h3 class="title">Criar novo contato</h3>
+    <form class="form">
+      <div class="form-container">
+        <label class="label name">Nome</label>
+        <input class="input" type="text" />
+      </div>
+      <div class="form-container email">
+        <label class="label e-mail">E-mail</label>
+        <input class="input" type="text" />
+      </div>
+      <div class="form-container tel">
+        <label class="label">Telefone</label>
+        <input class="input tel" type="text" />
+      </div>
+    </form>
+    <div class="buttons-container">
+      <button class="button" (click)="close()">Cancelar</button>
+      <button class="button save">Salvar</button>
+    </div>
   </div>
 </div>
