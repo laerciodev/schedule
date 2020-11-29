@@ -27,13 +27,15 @@ export class AddContactComponent implements OnInit {
       tel: [''],
     });
     console.log(this.form);
-    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe(() => {
-      console.log(this.form);
-    });
+    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe(() => {});
   }
 
   close() {
     this.closeModal.emit(false);
     this.form.reset();
+  }
+
+  save() {
+    this.close();
   }
 }

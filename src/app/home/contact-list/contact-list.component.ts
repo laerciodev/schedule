@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Contact } from '../../../app/shared/models';
 
 @Component({
   selector: 'app-contact-list',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactListComponent implements OnInit {
   showModal: boolean;
+  contacts: Contact[];
+
   constructor() {}
 
   ngOnInit(): void {}
