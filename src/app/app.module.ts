@@ -13,6 +13,9 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
+/* reducers */
+import { contactReducer } from '../app/shared/store/contact.reducer';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -21,8 +24,16 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     HomeModule,
     AngularSvgIconModule.forRoot(),
-    StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreModule.forRoot(
+      {
+        customers: contactReducer,
+      },
+      {}
+    ),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

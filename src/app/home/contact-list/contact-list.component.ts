@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Contact } from '../../../app/shared/models';
 
 @Component({
@@ -8,9 +10,11 @@ import { Contact } from '../../../app/shared/models';
 })
 export class ContactListComponent implements OnInit {
   showModal: boolean;
-  contacts: Contact[];
+  contacts$: Observable<Contact[]>;
 
-  constructor() {}
+  constructor(private store: Store<{ customers: Contact[] }>) {
+    this.contacts$ = store.select('customers');
+  }
 
   ngOnInit(): void {}
 

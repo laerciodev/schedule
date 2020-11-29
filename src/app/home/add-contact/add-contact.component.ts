@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store } from '@ngrx/store';
+import { save } from '../../shared/store/contact.action';
 
 @UntilDestroy()
 @Component({
@@ -14,7 +16,7 @@ export class AddContactComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -36,6 +38,8 @@ export class AddContactComponent implements OnInit {
   }
 
   save() {
+    const contact = this.form.value;
+    this.store.dispatch(save({ contact }));
     this.close();
   }
 }
