@@ -9,6 +9,7 @@ import { HomeComponent } from './home.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
+import { ButtonAddContactComponent } from './button-add-contact/button-add-contact.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
     HeaderComponent,
     ContactListComponent,
     AddContactComponent,
+    ButtonAddContactComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, AngularSvgIconModule.forRoot()],
 })

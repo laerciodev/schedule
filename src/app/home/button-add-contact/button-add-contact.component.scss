@@ -1,0 +1,22 @@
+@import "../../../assets/css/color.scss";
+
+.add-contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 144px;
+  height: 40px;
+  font-family: inherit;
+  font-weight: 500;
+  padding: 12px 22px 12px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
+  border: solid 1px rgba(255, 255, 255, 0.16);
+  background-color: $light-yellowish-green;
+}
+
+.icon-plus {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}

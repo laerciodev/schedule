@@ -2,10 +2,7 @@
   <div *ngIf="(contacts$ | async)?.length === 0" class="empty">
     <svg-icon class="icon-book" src="assets/svg/icon-book.svg"></svg-icon>
     <p class="message">Nenhum contato foi criado ainda.</p>
-    <button (click)="openModal()" class="button add-contact">
-      <svg-icon class="icon-plus" src="assets/svg/icon-plus.svg"></svg-icon>
-      Criar contato
-    </button>
+    <button-add-contact></button-add-contact>
   </div>
   <table *ngIf="(contacts$ | async)?.length > 0" class="contact-list-table">
     <thead class="thead">

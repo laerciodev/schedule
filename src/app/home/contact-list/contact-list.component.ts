@@ -16,15 +16,5 @@ export class ContactListComponent implements OnInit {
     this.contacts$ = store.select('contacts');
   }
 
-  ngOnInit(): void {
-    this.contacts$.subscribe((contact) => console.log(contact));
-  }
-
-  openModal(): void {
-    this.showModal = true;
-  }
-
-  closeModal(value: boolean) {
-    this.showModal = value;
-  }
+  ngOnInit(): void {}
 }
