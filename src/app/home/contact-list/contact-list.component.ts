@@ -12,11 +12,13 @@ export class ContactListComponent implements OnInit {
   showModal: boolean;
   contacts$: Observable<Contact[]>;
 
-  constructor(private store: Store<{ customers: Contact[] }>) {
-    this.contacts$ = store.select('customers');
+  constructor(private store: Store<{ contacts: Contact[] }>) {
+    this.contacts$ = store.select('contacts');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.contacts$.subscribe((contact) => console.log(contact));
+  }
 
   openModal(): void {
     this.showModal = true;

@@ -17,11 +17,7 @@
     </form>
     <div class="buttons-container">
       <button class="button" (click)="close()">Cancelar</button>
-      <button
-        [disabled]="!form.touched || !form.dirty"
-        (click)="save()"
-        class="button save"
-      >
+      <button [disabled]="!form.dirty" (click)="save()" class="button save">
         Salvar
       </button>
     </div>

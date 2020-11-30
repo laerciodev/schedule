@@ -1,5 +1,5 @@
 <main class="main">
-  <div class="empty">
+  <div *ngIf="(contacts$ | async)?.length === 0" class="empty">
     <svg-icon class="icon-book" src="assets/svg/icon-book.svg"></svg-icon>
     <p class="message">Nenhum contato foi criado ainda.</p>
     <button (click)="openModal()" class="button add-contact">
@@ -7,12 +7,21 @@
       Criar contato
     </button>
   </div>
-  <table class="contact-list-table">
-    <thead>
-      <th>Contatos</th>
-      <th>E-mail</th>
-      <th>Telefone</th>
+  <table *ngIf="(contacts$ | async)?.length > 0" class="contact-list-table">
+    <thead class="thead">
+      <tr class="table-row border-bottom-none">
+        <th class="th">Contatos</th>
+        <th class="th">E-mail</th>
+        <th class="th">Telefone</th>
+      </tr>
     </thead>
+    <tbody class="tbody">
+      <tr *ngFor="let item of contacts$ | async" class="table-row">
+        <td class="td">{{ item?.contact?.name }}</td>
+        <td class="td">{{ item?.contact?.email }}</td>
+        <td class="td">{{ item?.contact?.tel }}</td>
+      </tr>
+    </tbody>
   </table>
   <app-add-contact
     [showModal]="showModal"

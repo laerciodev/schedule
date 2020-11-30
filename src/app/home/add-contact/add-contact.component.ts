@@ -28,7 +28,6 @@ export class AddContactComponent implements OnInit {
       email: [''],
       tel: [''],
     });
-    console.log(this.form);
     this.form.valueChanges.pipe(untilDestroyed(this)).subscribe(() => {});
   }
 
