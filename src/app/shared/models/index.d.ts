@@ -3,3 +3,7 @@ export interface Contact {
   email: string;
   tel: string;
 }
+
+export interface ContactState {
+  contacts: Contact[];
+}

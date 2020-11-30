@@ -4,17 +4,19 @@ import { HttpClientModule } from '@angular/common/http';
 
 /* modules */
 import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 import { HomeModule } from './home/home.module';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
 /* components */
 import { AppComponent } from './app.component';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
 /* reducers */
 import { contactReducer } from '../app/shared/store/contact.reducer';
+import { metaReducers } from './shared/store/storage.metareducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,9 +28,11 @@ import { contactReducer } from '../app/shared/store/contact.reducer';
     AngularSvgIconModule.forRoot(),
     StoreModule.forRoot(
       {
-        customers: contactReducer,
+        contacts: contactReducer,
       },
-      {}
+      {
+        metaReducers,
+      }
     ),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
