@@ -17,6 +17,7 @@ import { environment } from '../environments/environment';
 /* reducers */
 import { contactReducer } from '../app/shared/store/contact.reducer';
 import { metaReducers } from './shared/store/storage.metareducer';
+import { modalReducer } from './shared/store/modal.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +30,7 @@ import { metaReducers } from './shared/store/storage.metareducer';
     StoreModule.forRoot(
       {
         contacts: contactReducer,
+        modal: modalReducer,
       },
       {
         metaReducers,

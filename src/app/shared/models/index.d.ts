@@ -7,3 +7,7 @@ export interface Contact {
 export interface ContactState {
   contacts: Contact[];
 }
+
+export interface ModalState {
+  modalIsOpen: boolean;
+}

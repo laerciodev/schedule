@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { openModal } from '../../shared/store/modal.action';
 
 @Component({
   selector: 'button-add-contact',
@@ -8,7 +10,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ButtonAddContactComponent implements OnInit {
   @Input() height: string;
 
-  constructor() {}
+  constructor(private store: Store<{ modal: boolean }>) {}
 
   ngOnInit(): void {}
+
+  openModal(): void {
+    this.store.dispatch(openModal());
+  }
 }

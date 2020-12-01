@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { save } from '../../shared/store/contact.action';
+import { closeModal } from '../../shared/store/modal.action';
 
 @UntilDestroy()
 @Component({
@@ -11,12 +12,12 @@ import { save } from '../../shared/store/contact.action';
   styleUrls: ['./add-contact.component.scss'],
 })
 export class AddContactComponent implements OnInit {
-  @Input() showModal: boolean;
-  @Output() closeModal = new EventEmitter<boolean>();
-
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<{ modal: boolean }>
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -32,7 +33,7 @@ export class AddContactComponent implements OnInit {
   }
 
   close() {
-    this.closeModal.emit(false);
+    this.store.dispatch(closeModal());
     this.form.reset();
   }
 

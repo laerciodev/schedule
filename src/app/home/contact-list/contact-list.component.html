@@ -20,8 +20,5 @@
       </tr>
     </tbody>
   </table>
-  <app-add-contact
-    [showModal]="showModal"
-    (closeModal)="closeModal($event)"
-  ></app-add-contact>
+  <app-add-contact *ngIf="(stateModal$ | async)?.modalIsOpen"></app-add-contact>
 </main>

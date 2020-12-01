@@ -9,11 +9,12 @@ import { Contact } from '../../../app/shared/models';
   styleUrls: ['./contact-list.component.scss'],
 })
 export class ContactListComponent implements OnInit {
-  showModal: boolean;
+  stateModal$: Observable<boolean>;
   contacts$: Observable<Contact[]>;
 
-  constructor(private store: Store<{ contacts: Contact[] }>) {
+  constructor(private store: Store<{ contacts: Contact[]; modal: boolean }>) {
     this.contacts$ = store.select('contacts');
+    this.stateModal$ = store.select('modal');
   }
 
   ngOnInit(): void {}
