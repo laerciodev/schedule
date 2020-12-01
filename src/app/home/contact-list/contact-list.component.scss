@@ -63,6 +63,11 @@
     transform: translateY(-50%);
   }
 
+  &:hover {
+    background: $very-light-pink;
+    cursor: pointer;
+  }
+
   &:last-child {
     border-radius: 0 0 4px 4px;
   }
