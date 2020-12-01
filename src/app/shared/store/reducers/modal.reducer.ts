@@ -1,7 +1,6 @@
-import { state } from '@angular/animations';
 import { createReducer, on, Action } from '@ngrx/store';
-import { openModal, closeModal } from './modal.action';
-import { ModalState } from '../models';
+import { openModal, closeModal } from '../actions/modal.action';
+import { ModalState } from '../../models';
 
 const initialState: ModalState = {
   modalIsOpen: false,

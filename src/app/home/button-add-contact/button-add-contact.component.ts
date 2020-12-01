@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { openModal } from '../../shared/store/modal.action';
+import { openModal } from '../../shared/store/actions/modal.action';
 
 @Component({
   selector: 'button-add-contact',

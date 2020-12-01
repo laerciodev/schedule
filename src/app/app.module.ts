@@ -15,9 +15,9 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 
 /* reducers */
-import { contactReducer } from '../app/shared/store/contact.reducer';
-import { metaReducers } from './shared/store/storage.metareducer';
-import { modalReducer } from './shared/store/modal.reducer';
+import { contactReducer } from './shared/store/reducers/contact.reducer';
+import { metaReducers } from './shared/store/metareducers/storage.metareducer';
+import { modalReducer } from './shared/store/reducers/modal.reducer';
 
 @NgModule({
   declarations: [AppComponent],

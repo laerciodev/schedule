@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
-import { save } from '../../shared/store/contact.action';
-import { closeModal } from '../../shared/store/modal.action';
+import { save } from '../../shared/store/actions/contact.action';
+import { closeModal } from '../../shared/store/actions/modal.action';
 
 @UntilDestroy()
 @Component({
