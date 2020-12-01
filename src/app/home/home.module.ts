@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 /* third modules */
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -8,7 +9,7 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HomeComponent } from './home.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
-import { AddContactComponent } from './add-contact/add-contact.component';
+import { ModalContactComponent } from './modal-contact/modal-contact.component';
 import { ButtonAddContactComponent } from './button-add-contact/button-add-contact.component';
 
 @NgModule({
@@ -16,9 +17,14 @@ import { ButtonAddContactComponent } from './button-add-contact/button-add-conta
     HomeComponent,
     HeaderComponent,
     ContactListComponent,
-    AddContactComponent,
+    ModalContactComponent,
     ButtonAddContactComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, AngularSvgIconModule.forRoot()],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    AngularSvgIconModule.forRoot(),
+  ],
 })
 export class HomeModule {}

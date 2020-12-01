@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { deleteContact } from '../../shared/store/actions/contact.action';
@@ -13,15 +14,22 @@ export class ContactListComponent implements OnInit {
   stateModal$: Observable<boolean>;
   contacts$: Observable<Contact[]>;
 
-  constructor(private store: Store<{ contacts: Contact[]; modal: boolean }>) {
+  constructor(
+    private store: Store<{ contacts: Contact[] }>,
+    private router: Router
+  ) {
     this.contacts$ = store.select('contacts');
-    this.stateModal$ = store.select('modal');
   }
 
   ngOnInit(): void {}
 
+  edit(id: number) {
+    this.router.navigateByUrl(`home/(modal:edit/${id})`, {
+      skipLocationChange: true,
+    });
+  }
+
   deleteContact(index: number) {
-    console.log(index);
     this.store.dispatch(deleteContact({ index }));
   }
 }

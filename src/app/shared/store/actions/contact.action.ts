@@ -10,3 +10,8 @@ export const deleteContact = createAction(
   '[Icon Delete] Delete Contact',
   props<{ index: number }>()
 );
+
+export const editContact = createAction(
+  '[Icon Edit] Edit Contact',
+  props<{ contact: Contact }>()
+);

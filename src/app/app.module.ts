@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 /* modules */
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +18,6 @@ import { environment } from '../environments/environment';
 /* reducers */
 import { contactReducer } from './shared/store/reducers/contact.reducer';
 import { metaReducers } from './shared/store/metareducers/storage.metareducer';
-import { modalReducer } from './shared/store/reducers/modal.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +30,6 @@ import { modalReducer } from './shared/store/reducers/modal.reducer';
     StoreModule.forRoot(
       {
         contacts: contactReducer,
-        modal: modalReducer,
       },
       {
         metaReducers,

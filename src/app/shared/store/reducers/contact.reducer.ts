@@ -1,5 +1,5 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { save, deleteContact } from '../actions/contact.action';
+import { save, deleteContact, editContact } from '../actions/contact.action';
 import { Contact } from '../../models';
 
 export const initialState: Contact[] = [];

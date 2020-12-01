@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { openModal } from '../../shared/store/actions/modal.action';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'button-add-contact',
@@ -10,11 +9,13 @@ import { openModal } from '../../shared/store/actions/modal.action';
 export class ButtonAddContactComponent implements OnInit {
   @Input() height: string;
 
-  constructor(private store: Store<{ modal: boolean }>) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   openModal(): void {
-    this.store.dispatch(openModal());
+    this.router.navigateByUrl('home/(modal:add)', {
+      skipLocationChange: true,
+    });
   }
 }
