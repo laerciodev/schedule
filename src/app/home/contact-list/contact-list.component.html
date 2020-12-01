@@ -13,13 +13,14 @@
       </tr>
     </thead>
     <tbody class="tbody">
-      <tr *ngFor="let item of contacts$ | async" class="table-row">
+      <tr *ngFor="let item of contacts$ | async; index as i" class="table-row">
         <td class="td">{{ item?.contact?.name }}</td>
         <td class="td">{{ item?.contact?.email }}</td>
         <td class="td">{{ item?.contact?.tel }}</td>
         <td class="td">
           <svg-icon class="icon edit" src="assets/svg/icon-edit.svg"></svg-icon>
           <svg-icon
+            (click)="deleteContact(i)"
             class="icon delete"
             src="assets/svg/icon-delete.svg"
           ></svg-icon>

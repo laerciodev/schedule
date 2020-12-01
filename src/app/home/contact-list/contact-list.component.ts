@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { deleteContact } from '../../shared/store/actions/contact.action';
 import { Contact } from '../../../app/shared/models';
 
 @Component({
@@ -18,4 +19,9 @@ export class ContactListComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  deleteContact(index: number) {
+    console.log(index);
+    this.store.dispatch(deleteContact({ index }));
+  }
 }
