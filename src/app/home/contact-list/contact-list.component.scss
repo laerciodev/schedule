@@ -53,6 +53,15 @@
 .tbody .table-row {
   color: $dark;
   font-size: 0.875rem;
+  position: relative;
+
+  .td:last-child {
+    position: absolute;
+    width: auto;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+  }
 
   &:last-child {
     border-radius: 0 0 4px 4px;
@@ -67,5 +76,13 @@
 
   &:first-child {
     margin-left: 2.938rem;
+  }
+}
+
+.icon {
+  cursor: pointer;
+
+  &.delete {
+    margin-left: 1.5rem;
   }
 }
