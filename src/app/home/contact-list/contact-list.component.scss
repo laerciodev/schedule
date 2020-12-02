@@ -50,10 +50,30 @@
   }
 }
 
+.circle {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #fa8d68;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px;
+  text-transform: uppercase;
+  font-size: 1rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0.5rem;
+}
+
 .tbody .table-row {
   color: $dark;
   font-size: 0.875rem;
   position: relative;
+
+  .td {
+    height: 40px;
+  }
 
   .td:last-child {
     position: absolute;
@@ -77,11 +97,17 @@
 .td {
   width: 100%;
   text-align: left;
-  padding: 1rem 0 0.563rem;
+  display: flex;
+  align-items: center;
 
   &:first-child {
     margin-left: 2.938rem;
+    text-transform: capitalize;
   }
+}
+
+.th {
+  padding: 1rem 0 0.563rem;
 }
 
 .icon {

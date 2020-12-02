@@ -17,7 +17,14 @@
         *ngFor="let contact of contacts$ | async; index as i"
         class="table-row"
       >
-        <td class="td">{{ contact?.name }}</td>
+        <td class="td">
+          <div class="circle">
+            {{ contact?.name | slice: 0:1 }}
+          </div>
+          <span>
+            {{ contact?.name }}
+          </span>
+        </td>
         <td class="td">{{ contact?.email }}</td>
         <td class="td">{{ contact?.tel }}</td>
         <td class="td">
