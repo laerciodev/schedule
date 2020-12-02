@@ -12,6 +12,9 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { ModalContactComponent } from './modal-contact/modal-contact.component';
 import { ButtonAddContactComponent } from './button-add-contact/button-add-contact.component';
 
+/* pipe */
+import { ModalContactPipe } from './modal-contact/modal-contact.pipe';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -19,6 +22,7 @@ import { ButtonAddContactComponent } from './button-add-contact/button-add-conta
     ContactListComponent,
     ModalContactComponent,
     ButtonAddContactComponent,
+    ModalContactPipe,
   ],
   imports: [
     CommonModule,

@@ -13,5 +13,5 @@ export const deleteContact = createAction(
 
 export const editContact = createAction(
   '[Icon Edit] Edit Contact',
-  props<{ contact: Contact }>()
+  props<{ contact: Contact; index: number }>()
 );

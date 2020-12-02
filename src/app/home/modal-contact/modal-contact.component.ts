@@ -3,10 +3,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { pluck } from 'rxjs/operators';
-import { save } from '../../shared/store/actions/contact.action';
+import {
+  save,
+  deleteContact,
+  editContact,
+} from '../../shared/store/actions/contact.action';
 import { getContactByIndex } from '../../../app/shared/store/selectors/contact.selector';
-import { Contact } from '../../../app/shared/models';
+import { Contact, Modal } from '../../../app/shared/models';
 
 @UntilDestroy()
 @Component({
@@ -17,6 +20,8 @@ import { Contact } from '../../../app/shared/models';
 export class ModalContactComponent implements OnInit {
   form: FormGroup;
   contact: Contact;
+  modal: Modal = 'ADD';
+  indexContact: number;
 
   constructor(
     private fb: FormBuilder,
@@ -26,6 +31,7 @@ export class ModalContactComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.setModal();
     this.initForm();
     this.initRoute();
   }
@@ -42,14 +48,39 @@ export class ModalContactComponent implements OnInit {
   initRoute() {
     this.route.params.pipe(untilDestroyed(this)).subscribe(({ id }) => {
       if (id) {
-        this.store
-          .select(getContactByIndex(id))
-          .pipe(pluck('contact'), untilDestroyed(this))
-          .subscribe((contact: Contact) => {
-            this.form.setValue({ ...contact });
-          });
+        this.indexContact = id;
+        if (this.modal === 'EDIT') {
+          this.store
+            .select(getContactByIndex(id))
+            .pipe(untilDestroyed(this))
+            .subscribe((contact: Contact) => {
+              this.form.setValue({ ...contact });
+            });
+        }
       }
     });
+  }
+
+  setModal() {
+    let route = this.router.url;
+
+    route = route.replace(/\d+/g, '');
+
+    const routes = {
+      '/home/(modal:add/)': 'ADD',
+      '/home/(modal:edit/)': 'EDIT',
+      '/home/(modal:delete/)': 'DELETE',
+    };
+
+    for (let property in routes) {
+      if (
+        routes.hasOwnProperty(property) &&
+        property.toString().startsWith(route)
+      ) {
+        this.modal = routes[route];
+        break;
+      }
+    }
   }
 
   close() {
@@ -60,6 +91,31 @@ export class ModalContactComponent implements OnInit {
   save() {
     const contact = this.form.value;
     this.store.dispatch(save({ contact }));
+  }
+
+  edit(index: number) {
+    this.store.dispatch(editContact({ contact: this.form.value, index }));
+  }
+
+  delete(index: number) {
+    this.store.dispatch(deleteContact({ index }));
+  }
+
+  dispatch(type: Modal) {
+    const actions = {
+      ADD: () => {
+        this.save();
+      },
+      EDIT: () => {
+        this.edit(this.indexContact);
+      },
+      DELETE: () => {
+        this.delete(this.indexContact);
+      },
+    };
+
+    actions[type]();
+
     this.close();
   }
 }

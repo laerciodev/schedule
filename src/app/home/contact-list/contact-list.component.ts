@@ -29,7 +29,9 @@ export class ContactListComponent implements OnInit {
     });
   }
 
-  deleteContact(index: number) {
-    this.store.dispatch(deleteContact({ index }));
+  deleteContact(id: number) {
+    this.router.navigateByUrl(`home/(modal:delete/${id})`, {
+      skipLocationChange: true,
+    });
   }
 }

@@ -19,6 +19,11 @@ const routes: Routes = [
         component: ModalContactComponent,
         outlet: 'modal',
       },
+      {
+        path: 'delete/:id',
+        component: ModalContactComponent,
+        outlet: 'modal',
+      },
     ],
   },
 ];

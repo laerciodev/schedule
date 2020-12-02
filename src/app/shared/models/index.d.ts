@@ -11,3 +11,5 @@ export interface ContactState {
 export interface ModalState {
   modalIsOpen: boolean;
 }
+
+export type Modal = 'ADD' | 'EDIT' | 'DELETE';

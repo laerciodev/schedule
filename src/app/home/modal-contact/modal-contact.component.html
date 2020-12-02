@@ -1,25 +1,36 @@
 <div class="modal-background">
   <div class="modal">
-    <h3 class="title">Criar novo contato</h3>
-    <form [formGroup]="form" class="form">
-      <div class="form-container">
-        <label class="label name">Nome</label>
-        <input formControlName="name" class="input" type="text" />
-      </div>
-      <div class="form-container email">
-        <label class="label e-mail">E-mail</label>
-        <input formControlName="email" class="input" type="text" />
-      </div>
-      <div class="form-container tel">
-        <label class="label">Telefone</label>
-        <input formControlName="tel" class="input tel" type="text" />
-      </div>
-    </form>
+    <h3 class="title">{{ modal | title }}</h3>
+    <ng-container *ngIf="modal === 'ADD' || modal === 'EDIT'">
+      <form [formGroup]="form" class="form">
+        <div class="form-container">
+          <label class="label name">Nome</label>
+          <input formControlName="name" class="input" type="text" />
+        </div>
+        <div class="form-container email">
+          <label class="label e-mail">E-mail</label>
+          <input formControlName="email" class="input" type="text" />
+        </div>
+        <div class="form-container tel">
+          <label class="label">Telefone</label>
+          <input formControlName="tel" class="input tel" type="text" />
+        </div>
+      </form>
+    </ng-container>
+    <ng-container *ngIf="modal === 'DELETE'">
+      <p class="delete-message">Deseja realmente excluir o usuário?</p>
+    </ng-container>
     <div class="buttons-container">
       <button class="button" (click)="close()">Cancelar</button>
-      <button [disabled]="!form.dirty" (click)="save()" class="button save">
-        Salvar
+      <button
+        [disabled]="!form.dirty && modal === 'ADD'"
+        (click)="dispatch(modal)"
+        class="button save"
+      >
+        {{ modal === "DELETE" ? "Exluir" : "Salvar" }}
       </button>
     </div>
   </div>
 </div>
+
+<ng-template #addEditContact> </ng-template>
