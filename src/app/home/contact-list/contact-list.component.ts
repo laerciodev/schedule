@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { deleteContact } from '../../shared/store/actions/contact.action';
 import { Contact } from '../../../app/shared/models';
 
 @Component({

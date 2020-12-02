@@ -11,3 +11,12 @@ export const getContactByIndex = (index: number) =>
       return [];
     }
   });
+
+export const getContactByName = (name: string) =>
+  createSelector(selectAllContacts, (allContacts) => {
+    if (allContacts.length > 0) {
+      return allContacts.filter((contact) => contact.name === name);
+    } else {
+      return allContacts;
+    }
+  });
