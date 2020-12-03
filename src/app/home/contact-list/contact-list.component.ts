@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { ContactsService } from '../../shared/store/contacts.service';
 import { Contact } from '../../../app/shared/models';
 
 @Component({
@@ -10,15 +9,7 @@ import { Contact } from '../../../app/shared/models';
   styleUrls: ['./contact-list.component.scss'],
 })
 export class ContactListComponent implements OnInit {
-  stateModal$: Observable<boolean>;
-  contacts$: Observable<Contact[]>;
-
-  constructor(
-    private store: Store<{ contacts: Contact[] }>,
-    private router: Router
-  ) {
-    this.contacts$ = store.select('contacts');
-  }
+  constructor(public service: ContactsService, private router: Router) {}
 
   ngOnInit(): void {}
 

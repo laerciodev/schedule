@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import {
@@ -8,6 +7,7 @@ import {
   deleteContact,
   editContact,
 } from '../../shared/store/actions/contact.action';
+import { ContactsService } from 'src/app/shared/store/contacts.service';
 import { getContactByIndex } from '../../../app/shared/store/selectors/contact.selector';
 import { Contact, Modal } from '../../../app/shared/models';
 
@@ -25,7 +25,7 @@ export class ModalContactComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store,
+    private contactService: ContactsService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -50,12 +50,8 @@ export class ModalContactComponent implements OnInit {
       if (id) {
         this.indexContact = id;
         if (this.modal === 'EDIT') {
-          this.store
-            .select(getContactByIndex(id))
-            .pipe(untilDestroyed(this))
-            .subscribe((contact: Contact) => {
-              this.form.setValue({ ...contact });
-            });
+          const contact = this.contactService.getContactById(id);
+          this.form.setValue(contact);
         }
       }
     });
@@ -94,19 +90,19 @@ export class ModalContactComponent implements OnInit {
   }
 
   save() {
-    const contact = {
+    const contact: Contact = {
       ...this.form.value,
       backgroundColor: this.getRandomColor(),
     };
-    this.store.dispatch(save({ contact }));
+    this.contactService.save(contact);
   }
 
   edit(index: number) {
-    this.store.dispatch(editContact({ contact: this.form.value, index }));
+    this.contactService.edit(index, this.form.value);
   }
 
   delete(index: number) {
-    this.store.dispatch(deleteContact({ index }));
+    this.contactService.delete(index);
   }
 
   dispatch(type: Modal) {

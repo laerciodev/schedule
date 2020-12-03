@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
-import { select, Store } from '@ngrx/store';
+import { ContactsService } from '../../shared/store/contacts.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
-import { getContactByName } from '../../shared/store/selectors/contact.selector';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Contact } from 'src/app/shared/models';
 
 @UntilDestroy()
@@ -17,16 +16,14 @@ export class HeaderComponent implements OnInit {
   contacts$: Observable<Contact[]>;
   form: FormGroup;
 
-  constructor(private store: Store<any>, private fb: FormBuilder) {
-    this.contacts$ = store.select('contacts');
-  }
+  constructor(public service: ContactsService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.initForm();
     this.inputSearch.valueChanges
-      .pipe(untilDestroyed(this), debounceTime(300))
-      .subscribe((termSearch) =>
-        this.store.select(getContactByName(termSearch))
+      .pipe(untilDestroyed(this), debounceTime(1000), distinctUntilChanged())
+      .subscribe((termSearch: string) =>
+        this.service.search(termSearch.toLowerCase())
       );
   }
 

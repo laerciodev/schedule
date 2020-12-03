@@ -18,6 +18,7 @@ import { environment } from '../environments/environment';
 /* reducers */
 import { contactReducer } from './shared/store/reducers/contact.reducer';
 import { metaReducers } from './shared/store/metareducers/storage.metareducer';
+import { ContactsService } from './shared/store/contacts.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,7 +41,7 @@ import { metaReducers } from './shared/store/metareducers/storage.metareducer';
       logOnly: environment.production,
     }),
   ],
-  providers: [],
+  providers: [ContactsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

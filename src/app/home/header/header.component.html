@@ -2,7 +2,7 @@
   <svg-icon class="ubook-logo" src="assets/svg/ubook-logo.svg"></svg-icon>
   <button-add-contact
     [height]="32"
-    *ngIf="(contacts$ | async)?.length > 0"
+    *ngIf="(service.contacts$ | async)?.length > 0"
   ></button-add-contact>
   <form class="search-form" [formGroup]="form">
     <input
