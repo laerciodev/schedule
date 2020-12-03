@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
-import { ContactsService } from '../../shared/store/contacts.service';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Contact } from 'src/app/shared/models';
+import { ContactsService } from '@shared/store/contacts.service';
+import { Contact } from '@shared/models';
 
 @UntilDestroy()
 @Component({

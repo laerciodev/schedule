@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Contact } from 'src/app/shared/models';
+import { Contact } from '@shared/models';
 
 @Component({
   selector: '[contact-item]',

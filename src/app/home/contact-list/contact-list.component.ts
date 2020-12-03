@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ContactsService } from '../../shared/store/contacts.service';
-import { Contact } from '../../../app/shared/models';
+import { ContactsService } from '@shared/store/contacts.service';
+import { Contact } from '@shared/models';
 
 @Component({
   selector: 'app-contact-list',
