@@ -17,40 +17,12 @@
     </thead>
     <tbody class="tbody">
       <tr
-        *ngFor="
-          let contact of service.contacts$ | async;
-          index as i;
-          trackBy: trackByContact
-        "
+        contact-item
         class="table-row"
-      >
-        <td class="td">
-          <div
-            [style.background-color]="contact?.backgroundColor"
-            class="circle"
-          >
-            {{ contact?.name | slice: 0:1 }}
-          </div>
-          <span>
-            {{ contact?.name }}
-          </span>
-        </td>
-        <td class="td">{{ contact?.email }}</td>
-        <td class="td">{{ contact?.tel }}</td>
-        <td class="td">
-          <svg-icon
-            (click)="edit(i)"
-            class="icon edit"
-            src="assets/svg/icon-edit.svg"
-          >
-          </svg-icon>
-          <svg-icon
-            (click)="deleteContact(i)"
-            class="icon delete"
-            src="assets/svg/icon-delete.svg"
-          ></svg-icon>
-        </td>
-      </tr>
+        *ngFor="let contact of service.contacts$ | async; index as i"
+        [contact]="contact"
+        [index]="i"
+      ></tr>
     </tbody>
   </table>
   <router-outlet name="modal"></router-outlet>

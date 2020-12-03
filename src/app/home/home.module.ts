@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -14,6 +16,7 @@ import { ButtonAddContactComponent } from './button-add-contact/button-add-conta
 
 /* pipe */
 import { ModalContactPipe } from './modal-contact/modal-contact.pipe';
+import { ContactItemComponent } from './contact-item/contact-item.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +26,12 @@ import { ModalContactPipe } from './modal-contact/modal-contact.pipe';
     ModalContactComponent,
     ButtonAddContactComponent,
     ModalContactPipe,
+    ContactItemComponent,
   ],
   imports: [
     CommonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     RouterModule,
     ReactiveFormsModule,
     AngularSvgIconModule.forRoot(),
