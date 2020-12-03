@@ -2,13 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import {
-  save,
-  deleteContact,
-  editContact,
-} from '../../shared/store/actions/contact.action';
 import { ContactsService } from 'src/app/shared/store/contacts.service';
-import { getContactByIndex } from '../../../app/shared/store/selectors/contact.selector';
 import { Contact, Modal } from '../../../app/shared/models';
 
 @UntilDestroy()
