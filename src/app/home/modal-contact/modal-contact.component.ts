@@ -16,6 +16,7 @@ export class ModalContactComponent implements OnInit {
   contact: Contact;
   modal: Modal = 'ADD';
   indexContact: number;
+  mask = '(00) 00000 - 0000';
 
   constructor(
     private fb: FormBuilder,
@@ -36,7 +37,6 @@ export class ModalContactComponent implements OnInit {
       email: [''],
       tel: [''],
     });
-    this.form.valueChanges.pipe(untilDestroyed(this)).subscribe(() => {});
   }
 
   initRoute() {

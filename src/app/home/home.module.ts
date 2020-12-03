@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 
 /* third modules */
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
 import { HomeComponent } from './home.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,6 +19,7 @@ import { ButtonAddContactComponent } from './button-add-contact/button-add-conta
 import { ModalContactPipe } from './modal-contact/modal-contact.pipe';
 import { ContactItemComponent } from './contact-item/contact-item.component';
 
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 @NgModule({
   declarations: [
     HomeComponent,
@@ -35,6 +37,7 @@ import { ContactItemComponent } from './contact-item/contact-item.component';
     RouterModule,
     ReactiveFormsModule,
     AngularSvgIconModule.forRoot(),
+    NgxMaskModule.forRoot(),
   ],
 })
 export class HomeModule {}
