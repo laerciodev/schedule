@@ -88,8 +88,16 @@ export class ModalContactComponent implements OnInit {
     this.form.reset();
   }
 
+  getRandomColor(): string {
+    const color = Math.floor(0x1000000 * Math.random()).toString(16);
+    return '#' + ('000000' + color).slice(-6);
+  }
+
   save() {
-    const contact = this.form.value;
+    const contact = {
+      ...this.form.value,
+      backgroundColor: this.getRandomColor(),
+    };
     this.store.dispatch(save({ contact }));
   }
 

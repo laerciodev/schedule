@@ -14,11 +14,18 @@
     </thead>
     <tbody class="tbody">
       <tr
-        *ngFor="let contact of contacts$ | async; index as i"
+        *ngFor="
+          let contact of contacts$ | async;
+          index as i;
+          trackBy: trackByContact
+        "
         class="table-row"
       >
         <td class="td">
-          <div class="circle">
+          <div
+            [style.background-color]="contact?.backgroundColor"
+            class="circle"
+          >
             {{ contact?.name | slice: 0:1 }}
           </div>
           <span>

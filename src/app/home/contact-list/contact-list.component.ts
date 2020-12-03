@@ -22,6 +22,10 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  trackByContact(index: number, contact: Contact) {
+    return contact.email;
+  }
+
   edit(id: number) {
     this.router.navigateByUrl(`home/(modal:edit/${id})`, {
       skipLocationChange: true,

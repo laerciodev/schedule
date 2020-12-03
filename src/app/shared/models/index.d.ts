@@ -2,6 +2,7 @@ export interface Contact {
   name: string;
   email: string;
   tel: string;
+  backgroundColor: string;
 }
 
 export interface ContactState {
