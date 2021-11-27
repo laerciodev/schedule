@@ -1,7 +1,8 @@
 export interface Contact {
+  id: string
   name: string;
   email: string;
-  tel: string;
+  telephone: string;
 }
 
 export interface ContactState {
