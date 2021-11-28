@@ -1,5 +1,5 @@
 export interface Contact {
-  id: string
+  id?: number
   name: string;
   email: string;
   telephone: string;
@@ -13,4 +13,9 @@ export interface ModalState {
   modalIsOpen: boolean;
 }
 
-export type Modal = 'ADD' | 'EDIT' | 'DELETE';
+export interface ActionContact {
+  contact: Contact,
+  action: Action,
+}
+
+export type Action = 'ADD' | 'EDIT' | 'DELETE';
