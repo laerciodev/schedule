@@ -1,7 +1,7 @@
-<div class="modal-background">
+<div *ngIf="open" class="modal-background">
   <div class="modal">
-    <h3 class="title">{{ modal | title }}</h3>
-    <ng-container *ngIf="modal === 'ADD' || modal === 'EDIT'">
+    <h3 class="title">{{ type | title }}</h3>
+    <ng-container *ngIf="type === 'ADD' || type === 'EDIT'">
       <form [formGroup]="form" class="form">
         <div class="form-container">
           <label class="label name">Nome</label>
@@ -15,27 +15,25 @@
           <label class="label">Telefone</label>
           <input
             [mask]="mask"
-            formControlName="tel"
+            formControlName="telephone"
             class="input tel"
             type="text"
           />
         </div>
       </form>
     </ng-container>
-    <ng-container *ngIf="modal === 'DELETE'">
+    <ng-container *ngIf="type === 'DELETE'">
       <p class="delete-message">Deseja realmente excluir o usuário?</p>
     </ng-container>
     <div class="buttons-container">
-      <button class="button" (click)="close()">Cancelar</button>
+      <button class="button" (click)="closeModal()">Cancelar</button>
       <button
-        [disabled]="!form.dirty && modal === 'ADD'"
-        (click)="dispatch(modal)"
+        [disabled]="!form.dirty && type === 'ADD'"
+        (click)="sendContactData()"
         class="button save"
       >
-        {{ modal === "DELETE" ? "Excluir" : "Salvar" }}
+        {{ type === "DELETE" ? "Excluir" : "Salvar" }}
       </button>
     </div>
   </div>
 </div>
-
-<ng-template #addEditContact> </ng-template>
