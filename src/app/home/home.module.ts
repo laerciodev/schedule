@@ -11,6 +11,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 
 import { HomeComponent } from './home.component';
 import { HeaderComponent } from './header/header.component';
+import { EmptyListComponent } from './empty-list/empty-list.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ModalContactComponent } from './modal-contact/modal-contact.component';
 import { ButtonAddContactComponent } from './button-add-contact/button-add-contact.component';
@@ -24,6 +25,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
   declarations: [
     HomeComponent,
     HeaderComponent,
+    EmptyListComponent,
     ContactListComponent,
     ModalContactComponent,
     ButtonAddContactComponent,
