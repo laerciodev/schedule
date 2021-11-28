@@ -1,2 +1,24 @@
-<app-header></app-header>
-<app-contact-list></app-contact-list>
+<app-header
+    (open)="setCurrentModal($event)"
+    (sendSearchTerm)="searchContact($event)"
+    [showButtonAddContacts]="hasContacts">
+</app-header>
+<main class="main">
+    <app-empty-list
+        class="empty-list"
+        *ngIf="!hasContacts"
+        (open)="setCurrentModal($event)">
+    </app-empty-list>
+    <app-contact-list
+        *ngIf="hasContacts"
+        [contacts]="showContacts"
+        (sendContact)="handleContactData($event)">
+    </app-contact-list>
+    <app-modal-contact
+        [contact]="currentContact"
+        [open]="showModal"
+        [type]="currentModal"
+        (sendContact)="handleContact($event)"
+        (close)="closeModal($event)"
+    ></app-modal-contact>
+</main>
