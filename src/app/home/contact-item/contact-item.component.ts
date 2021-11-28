@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Contact } from 'src/app/shared/models';
 
@@ -9,7 +9,9 @@ import { Contact } from 'src/app/shared/models';
 })
 export class ContactItemComponent implements OnInit {
   @Input() contact: Contact;
-  @Input() index: number;
+  @Input() action = {};
+  @Output() sendContact = new EventEmitter<Object>();
+
   showHighlight: boolean;
   backgroundColor: string;
 
@@ -23,16 +25,8 @@ export class ContactItemComponent implements OnInit {
     }, 10000);
   }
 
-  edit(index: number) {
-    this.router.navigateByUrl(`home/(modal:edit/${index})`, {
-      skipLocationChange: true,
-    });
-  }
-
-  deleteContact(index: number) {
-    this.router.navigateByUrl(`home/(modal:delete/${index})`, {
-      skipLocationChange: true,
-    });
+  doAction(action: string) {
+    this.sendContact.emit({ contact: this.contact, action });
   }
 
   getRandomColor(): string {

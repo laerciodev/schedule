@@ -14,13 +14,13 @@
 </td>
 <td [class.highlight]="showHighlight" class="td">
   <svg-icon
-    (click)="edit(index)"
+    (click)="doAction('EDIT')"
     class="icon edit"
     src="assets/svg/icon-edit.svg"
   >
   </svg-icon>
   <svg-icon
-    (click)="deleteContact(index)"
+    (click)="doAction('DELETE')"
     class="icon delete"
     src="assets/svg/icon-delete.svg"
   ></svg-icon>
