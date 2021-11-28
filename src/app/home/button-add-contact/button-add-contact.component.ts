@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'button-add-contact',
@@ -8,14 +7,13 @@ import { Router } from '@angular/router';
 })
 export class ButtonAddContactComponent implements OnInit {
   @Input() height: string;
+  @Output() addContact = new EventEmitter();
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
   openModal(): void {
-    this.router.navigateByUrl('home/(modal:add)', {
-      skipLocationChange: true,
-    });
+    this.addContact.emit('ADD');
   }
 }
