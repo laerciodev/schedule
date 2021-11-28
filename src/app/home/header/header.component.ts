@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
-import { ContactsService } from '../../shared/store/contacts.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Contact } from 'src/app/shared/models';
 
 @UntilDestroy()
 @Component({
@@ -13,17 +10,20 @@ import { Contact } from 'src/app/shared/models';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  contacts$: Observable<Contact[]>;
+  @Input() showButtonAddContacts: boolean;
+  @Output() open = new EventEmitter();
+  @Output() sendSearchTerm = new EventEmitter();
+
   form: FormGroup;
 
-  constructor(public service: ContactsService, private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.initForm();
     this.inputSearch.valueChanges
       .pipe(untilDestroyed(this), debounceTime(1000), distinctUntilChanged())
       .subscribe((termSearch: string) =>
-        this.service.search(termSearch.toLowerCase())
+        this.sendSearchTerm.emit(termSearch)
       );
   }
 
@@ -35,5 +35,9 @@ export class HeaderComponent implements OnInit {
 
   get inputSearch(): AbstractControl {
     return this.form.get('inputSearch');
+  }
+
+  openModal(value: string) {
+    this.open.emit(value)
   }
 }
