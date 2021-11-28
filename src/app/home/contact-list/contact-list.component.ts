@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { ContactsService } from '../../shared/store/contacts.service';
-import { Contact } from '../../../app/shared/models';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ActionContact, Contact } from '../../../app/shared/models';
 
 @Component({
   selector: 'app-contact-list',
@@ -9,9 +7,20 @@ import { Contact } from '../../../app/shared/models';
   styleUrls: ['./contact-list.component.scss'],
 })
 export class ContactListComponent {
-  constructor(public service: ContactsService, private router: Router) {}
+  constructor() {}
+
+  @Input() contacts: Contact[];
+  @Output() sendContact = new EventEmitter();
 
   trackByContact(index: number, contact: Contact) {
     return contact.email;
+  }
+
+  sendContactData(value: ActionContact) {
+    this.sendContact.emit(value);
+  }
+
+  get emptyResultsFound() {
+    return this.contacts.length === 0;
   }
 }

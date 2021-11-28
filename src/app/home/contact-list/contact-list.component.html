@@ -1,13 +1,5 @@
 <main class="main">
-  <div *ngIf="(service.contacts$ | async)?.length === 0" class="empty">
-    <svg-icon class="icon-book" src="assets/svg/icon-book.svg"></svg-icon>
-    <p class="message">Nenhum contato foi criado ainda.</p>
-    <button-add-contact></button-add-contact>
-  </div>
-  <table
-    *ngIf="(service.contacts$ | async)?.length > 0"
-    class="contact-list-table"
-  >
+  <table class="contact-list-table">
     <thead class="thead">
       <tr class="table-row border-bottom-none">
         <th class="th">Contatos</th>
@@ -15,15 +7,18 @@
         <th class="th">Telefone</th>
       </tr>
     </thead>
-    <tbody class="tbody">
+    <tbody *ngIf="!emptyResultsFound" class="tbody">
       <tr
         contact-item
+        (sendContact)="sendContactData($event)"
         class="table-row"
-        *ngFor="let contact of service.contacts$ | async; index as i"
+        *ngFor="let contact of contacts; index as i"
         [contact]="contact"
         [index]="i"
       ></tr>
     </tbody>
+    <div *ngIf="emptyResultsFound" class="empty-results">
+      Nenhum resultado encontrado
+    </div>
   </table>
-  <router-outlet name="modal"></router-outlet>
 </main>
