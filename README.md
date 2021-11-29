@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Database
 
-cd schedule && npx json-server database.json
+npx json-server database.json
 
 ## Development server
 
